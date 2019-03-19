@@ -179,6 +179,6 @@ public class GoogleIdentityProvider implements OAuth2IdentityProvider {
       .apiKey(settings.clientId())
       .apiSecret(settings.clientSecret())
       .grantType("authorization_code")
-      .callback(context.getCallbackUrl());
+      .callback(settings.getSonarBaseURL() + "/oauth2/callback/" + KEY);
   }
 }

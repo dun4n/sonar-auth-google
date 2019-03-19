@@ -76,11 +76,10 @@ public class GoogleIdentityProviderTest {
     setSettings(true);
     OAuth2IdentityProvider.InitContext context = mock(OAuth2IdentityProvider.InitContext.class);
     when(context.generateCsrfState()).thenReturn("state");
-    when(context.getCallbackUrl()).thenReturn("http://localhost/callback");
 
     underTest.init(context);
 
-    verify(context).redirectTo("https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=id&redirect_uri=http%3A%2F%2Flocalhost%2Fcallback&scope=openid%20email");
+    verify(context).redirectTo("https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=id&redirect_uri=http%3A%2F%2Flocalhost%2Foauth2%2Fcallback%2Fgoogleoauth&scope=openid%20email");
   }
 
   @Test
@@ -99,6 +98,7 @@ public class GoogleIdentityProviderTest {
       settings.setProperty("sonar.auth.googleoauth.clientSecret.secured", "secret");
       settings.setProperty("sonar.auth.googleoauth.loginStrategy", LOGIN_STRATEGY_DEFAULT_VALUE);
       settings.setProperty("sonar.auth.googleoauth.enabled", true);
+      settings.setProperty("sonar.auth.googleauth.baseUrl", "http://localhost");
     } else {
       settings.setProperty("sonar.auth.googleoauth.enabled", false);
     }

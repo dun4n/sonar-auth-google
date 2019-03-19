@@ -101,7 +101,11 @@ public class GoogleSettings {
   }
 
   public String getSonarBaseURL() {
-    return settings.getString(SONAR_BASE_URL);
+    String url = settings.getString(SONAR_BASE_URL);
+    if (url == null) {
+      url = settings.getString("sonar.core.serverBaseURL");
+    }
+    return url;
   }
 
   public String webURL() {
@@ -199,7 +203,7 @@ public class GoogleSettings {
         .build(),
       PropertyDefinition.builder(SONAR_BASE_URL)
         .name("SonarQube Base URL")
-        .description("Set the SonarQube base URL used to redirect")
+        .description("When set, will be used instead of the sonar.core.serverBaseURL property")
         .category(CATEGORY)
         .subCategory(SUBCATEGORY)
         .index(index++)
