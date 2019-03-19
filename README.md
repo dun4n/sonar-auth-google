@@ -51,6 +51,7 @@ sonar.auth.google.clientSecret.secured|Consumer password provided by Google when
 sonar.auth.google.enabled|Enable Google users to login. Value is ignored if consumer Key and Secret are not defined|false
 sonar.auth.google.loginStrategy|When the login strategy is set to 'Unique', the user's login will be auto-generated the first time so that it is unique. When the login strategy is set to 'Same as Google login', the user's login will be the Google login. This last strategy allows, when changing the authentication provider, to keep existing users (if logins from new provider are the same than Google)|Unique
 sonar.auth.google.limitOauthDomain|When set with a GApps domain, only allow users from that domain to authenticate|None
+ssonar.auth.googleauth.baseUrl|When set, will override the default base URL|None
 
 
 
