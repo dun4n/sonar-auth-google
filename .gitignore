@@ -13,6 +13,7 @@ dependency-reduced-pom.xml
 .project
 .settings
 .externalToolBuilders
+bin/
 
 # ---- Mac OS X
 .DS_Store
