@@ -70,6 +70,7 @@ public class GoogleSettings {
   public static final String CATEGORY = "security";
   public static final String SUBCATEGORY = "googleoauth";
   public static final String SONAR_CONTEXT = "sonar.web.context";
+  public static final String SONAR_BASE_URL = "sonar.auth.googleauth.baseUrl";
 
   private final Settings settings;
 
@@ -100,7 +101,11 @@ public class GoogleSettings {
   }
 
   public String getSonarBaseURL() {
-    return settings.getString("sonar.core.serverBaseURL");
+    String url = settings.getString(SONAR_BASE_URL);
+    if (url == null) {
+      url = settings.getString("sonar.core.serverBaseURL");
+    }
+    return url;
   }
 
   public String webURL() {
@@ -192,6 +197,13 @@ public class GoogleSettings {
         .name("Google authentication URI")
         .description("When set, this will override the URI used to send an authentication request to Google")
         .defaultValue(DEFAULT_WEB_URL)
+        .category(CATEGORY)
+        .subCategory(SUBCATEGORY)
+        .index(index++)
+        .build(),
+      PropertyDefinition.builder(SONAR_BASE_URL)
+        .name("SonarQube Base URL")
+        .description("When set, this will override the URL used as base URL")
         .category(CATEGORY)
         .subCategory(SUBCATEGORY)
         .index(index++)
